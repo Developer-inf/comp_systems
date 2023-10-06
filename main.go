@@ -5,6 +5,7 @@ import (
 	"net/http"
 )
 
+
 func main() {
 	http.HandleFunc("/", MainPage)
 	http.HandleFunc("/api/product", ProductService)
