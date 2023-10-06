@@ -1,0 +1,1 @@
+create sequence s_product minvalue 1 increment by 1;
