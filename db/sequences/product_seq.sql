@@ -1,0 +1,1 @@
+create sequence product_seg minvalue 1 increment by 1;

@@ -18,7 +18,7 @@ func MainPage(w http.ResponseWriter, r *http.Request) {
 
 func ProductService(w http.ResponseWriter, r *http.Request) {
 	const table_name = "t_product"
-	connStr := "user=postgres password=123 dbname=postgres sslmode=disable"
+	connStr := "user=postgres password=qwerty dbname=postgres sslmode=disable"
 	db, err := sql.Open("postgres", connStr)
 
 	if err != nil {
