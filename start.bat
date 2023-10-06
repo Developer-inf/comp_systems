@@ -1,8 +1,5 @@
-d:\
-cd D:\MAI\computing_systems\comp_systems
-chcp 65001
-go build -o  res.exe  -ldflags "-s -w" .
-cls
 @ECHO OFF
+chcp 65001
+cls
+go build -o  res.exe  -ldflags "-s -w" .
 echo Проект успешно собран
-timeout 5
