@@ -59,7 +59,7 @@ func ProductService(w http.ResponseWriter, r *http.Request) {
 		http_res = append(http_res, json_format...)
 		http_res = append(http_res, ',')
 	}
-	http_res[len(http_res) - 1] = ' '
+	http_res[len(http_res)-1] = ' '
 	http_res = append(http_res, []byte("]}")...)
 	fmt.Printf("%v\n", string(http_res))
 
