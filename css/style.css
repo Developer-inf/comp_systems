@@ -1,3 +1,11 @@
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: rgb(47, 114, 173);
+}
+
 table {
     border-collapse: collapse;
     margin: auto;
@@ -7,4 +15,35 @@ td, th {
     border: 1px solid black;
     padding: 5px;
     text-align: center;
+}
+
+.center_block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+    width: min(200px, 30vw);
+    height: 90vh;
+}
+
+.center_block > * {
+    width: 100%;
+}
+
+.big_btn {
+    padding: 10px 20px;
+    margin: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.back_btn {
+    position: absolute;
+    left: 50px;
+    top: 25px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px 20px;
 }

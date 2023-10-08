@@ -29,13 +29,13 @@ func RespondPage(filename *string, h *Header, w http.ResponseWriter, r *http.Req
 
 		response_body = append(response_body, buf[:cnt]...)
 	}
-	
+
 	fmt.Printf("--------------------------------------------------------------\n%s %s\n", r.Method, r.URL)
 	for key, val := range r.Header {
 		fmt.Printf("%s: %s\n", key, val[0])
 	}
 	fmt.Printf("\n")
-	
+
 	for key, val := range *h {
 		w.Header().Add(key, val)
 	}
@@ -44,7 +44,7 @@ func RespondPage(filename *string, h *Header, w http.ResponseWriter, r *http.Req
 
 func MainPage(w http.ResponseWriter, r *http.Request) {
 	filename := "html/main.html"
-	h := Header {
+	h := Header{
 		"Content-Type": "text/html; charset=utf-8",
 	}
 	RespondPage(&filename, &h, w, r)
@@ -52,7 +52,7 @@ func MainPage(w http.ResponseWriter, r *http.Request) {
 
 func ProductsPage(w http.ResponseWriter, r *http.Request) {
 	filename := "html/products.html"
-	h := Header {
+	h := Header{
 		"Content-Type": "text/html; charset=utf-8",
 	}
 	RespondPage(&filename, &h, w, r)
@@ -60,7 +60,7 @@ func ProductsPage(w http.ResponseWriter, r *http.Request) {
 
 func StyleCSS(w http.ResponseWriter, r *http.Request) {
 	filename := "css/style.css"
-	h := Header {
+	h := Header{
 		"Content-Type": "text/css; charset=utf-8",
 	}
 	RespondPage(&filename, &h, w, r)
@@ -68,7 +68,7 @@ func StyleCSS(w http.ResponseWriter, r *http.Request) {
 
 func GetProductScript(w http.ResponseWriter, r *http.Request) {
 	filename := "js/get_products.js"
-	h := Header {
+	h := Header{
 		"Content-Type": "application/javascript; charset=utf-8",
 	}
 	RespondPage(&filename, &h, w, r)
