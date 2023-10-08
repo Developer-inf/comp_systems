@@ -14,6 +14,21 @@ const MAXBUFSIZE = 4 * 1024 // 1Kb
 
 type Header map[string]string
 
+func errorHandler(w http.ResponseWriter, r *http.Request, url string, status int) int {
+	if r.URL.String() == url {
+		return 0
+	}
+
+	w.WriteHeader(status)
+	w.Header().Add("Connection", "close")
+	w.Write([]byte{})
+	if status == http.StatusNotFound {
+		fmt.Fprint(w, "custom 404")
+	}
+
+	return 1
+}
+
 func RespondPage(filename *string, h *Header, w http.ResponseWriter, r *http.Request) {
 	file, err := os.Open(*filename)
 	if err != nil {
@@ -43,6 +58,10 @@ func RespondPage(filename *string, h *Header, w http.ResponseWriter, r *http.Req
 }
 
 func MainPage(w http.ResponseWriter, r *http.Request) {
+	if err := errorHandler(w, r, main_page, http.StatusNotFound); err != 0 {
+		return
+	}
+
 	filename := "html/main.html"
 	h := Header{
 		"Content-Type": "text/html; charset=utf-8",
@@ -51,6 +70,10 @@ func MainPage(w http.ResponseWriter, r *http.Request) {
 }
 
 func ProductsPage(w http.ResponseWriter, r *http.Request) {
+	if err := errorHandler(w, r, products_page, http.StatusNotFound); err != 0 {
+		return
+	}
+
 	filename := "html/products.html"
 	h := Header{
 		"Content-Type": "text/html; charset=utf-8",
@@ -59,6 +82,10 @@ func ProductsPage(w http.ResponseWriter, r *http.Request) {
 }
 
 func StyleCSS(w http.ResponseWriter, r *http.Request) {
+	if err := errorHandler(w, r, style, http.StatusNotFound); err != 0 {
+		return
+	}
+
 	filename := "css/style.css"
 	h := Header{
 		"Content-Type": "text/css; charset=utf-8",
@@ -67,6 +94,10 @@ func StyleCSS(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetProductScript(w http.ResponseWriter, r *http.Request) {
+	if err := errorHandler(w, r, get_products_script, http.StatusNotFound); err != 0 {
+		return
+	}
+
 	filename := "js/get_products.js"
 	h := Header{
 		"Content-Type": "application/javascript; charset=utf-8",
@@ -75,6 +106,10 @@ func GetProductScript(w http.ResponseWriter, r *http.Request) {
 }
 
 func ProductService(w http.ResponseWriter, r *http.Request) {
+	if err := errorHandler(w, r, api_product, http.StatusNotFound); err != 0 {
+		return
+	}
+
 	const table_name = "t_product"
 	connStr := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable", DB_USER, DB_PASS, DB_NAME)
 	db, err := sql.Open("postgres", connStr)

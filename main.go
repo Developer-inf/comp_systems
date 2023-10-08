@@ -1,19 +1,26 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 )
 
+const (
+	main_page           = "/"
+	products_page       = "/products"
+	style               = "/style.css"
+	get_products_script = "/get_products.js"
+	api_product         = "/api/product"
+)
 
 func main() {
-	http.HandleFunc("/", MainPage)
-	http.HandleFunc("/products", ProductsPage)
-	http.HandleFunc("/style.css", StyleCSS)
-	http.HandleFunc("/get_products.js", GetProductScript)
-	http.HandleFunc("/api/product", ProductService)
-	http.HandleFunc("/favicon.ico", func(w http.ResponseWriter, r *http.Request) {})
-	
+	http.HandleFunc(main_page, MainPage)
+	http.HandleFunc(products_page, ProductsPage)
+	http.HandleFunc(style, StyleCSS)
+	http.HandleFunc(get_products_script, GetProductScript)
+	http.HandleFunc(api_product, ProductService)
 
+	fmt.Println("Server is listening...")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
